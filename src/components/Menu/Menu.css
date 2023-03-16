@@ -1,0 +1,21 @@
+.menu {
+  max-width: 800px;
+  margin: auto;
+  margin-top: 20px;
+  display: flex;
+}
+
+.cards {
+  width: 350px;
+  height: 200px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.cards p {
+  text-align: center;
+  margin-top: 180px;
+  font-size: 20px;
+  color: rgb(18, 17, 17);
+  font-weight: 700;
+  background-color: aqua;
+}
