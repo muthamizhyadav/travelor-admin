@@ -19,3 +19,15 @@
   font-weight: 700;
   background-color: aqua;
 }
+
+@media only screen and (max-width: 600px) {
+  .menu {
+    display: grid;
+    margin-bottom: 30px !important;
+  }
+  .cards {
+    width: 100%;
+    margin-bottom: 20px;
+    
+  }
+}

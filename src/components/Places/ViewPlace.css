@@ -1,0 +1,36 @@
+.place-view-table {
+  max-width: 80%;
+  margin: auto;
+  margin-top: 20px;
+}
+.place-view-table .table-head {
+  background-color: rgb(59, 233, 169);
+  color: white !important;
+}
+.place-view-options {
+  max-width: 500px;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+.place-view-options button {
+  width: 150px;
+  height: 35px;
+  border: none;
+  cursor: pointer;
+}
+.place-view-options .place-view-btn-add {
+  background-color: green;
+  color: white;
+}
+.place-view-options .place-view-btn-edite {
+  background-color: orange;
+  color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .place-view-table {
+    max-width: 100% !important;
+  }
+}

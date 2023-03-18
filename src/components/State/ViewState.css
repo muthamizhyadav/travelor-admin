@@ -1,0 +1,44 @@
+.view-state-table {
+  max-width: 80%;
+  margin: auto;
+  margin-top: 10px;
+}
+.view-state-options {
+  max-width: 500px;
+  margin: auto;
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+.view-state-options button {
+  width: 150px;
+  height: 35px;
+  border: none;
+  cursor: pointer;
+}
+.view-state-options .view-state-btn-add {
+  background-color: green;
+  color: white;
+}
+.view-state-options .view-state-btn-edite {
+  background-color: rgb(235, 158, 51);
+  color: white;
+}
+.table-head {
+  background-color: antiquewhite;
+}
+.Edite-btn-action-state {
+  width: 100px;
+  height: 25px;
+  border: none;
+  background-color: rgb(61, 113, 225);
+  color: white;
+  cursor: pointer;
+}
+@media only screen and (max-width: 600px) {
+  .view-state-table {
+    max-width: 100%;
+    margin: auto;
+    margin-top: 10px;
+  }
+}

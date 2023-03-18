@@ -1,0 +1,99 @@
+.add-state-forms {
+  margin: auto;
+  max-width: 500px;
+  height: fit-content;
+  margin-top: 20px;
+  background-color: antiquewhite;
+}
+
+.add-state-forms div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 80%;
+  margin: auto;
+  margin-bottom: 15px;
+}
+.add-state-forms p {
+  height: 45px;
+  border: 1px solid red;
+  width: 100%;
+  box-shadow: 4px 4px 3px rgb(210, 200, 200);
+  text-align: center;
+  padding-top: 15px;
+  font-size: 24px;
+}
+
+.add-state-forms input {
+  width: 233px;
+  height: 31px;
+  border-radius: 10px;
+  border: none;
+}
+.add-state-forms input:focus-visible {
+  border: 1px solid blue;
+  outline: none;
+}
+
+.add-state-forms select {
+  width: 235px;
+  height: 33px;
+  border: none;
+  appearance: none;
+  border-radius: 9px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.add-state-forms option {
+  width: 200px;
+  height: 33px;
+  border: none;
+  appearance: none;
+  border-radius: 9px;
+}
+.add-state-forms select:focus-visible {
+  outline-color: aqua;
+}
+.add-state-forms .manage-statestate-btn {
+  display: block;
+  margin: auto;
+  width: 156px;
+  height: 35px;
+  border: none;
+  background-color: crimson;
+  color: white;
+  cursor: pointer;
+}
+.manage-state-options {
+  max-width: 400px;
+  margin: auto;
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-around;
+}
+.manage-state-options button {
+  width: 150px;
+  height: 35px;
+  border: none;
+  cursor: pointer;
+}
+.manage-state-view {
+  background-color: green;
+  color: white;
+}
+.manage-state-edite {
+    background-color: tomato;
+    color: white;
+  }
+
+@media only screen and (max-width: 600px) {
+  .add-state-forms div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 90%;
+    margin: auto;
+    margin-bottom: 15px;
+  }
+}

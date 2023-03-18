@@ -16,8 +16,9 @@ function Home() {
       setError(true);
     } else if (login.Password == "" || login.Password != "Admin@123") {
       setError(true);
+    } else {
+      naviget("/Menu");
     }
-    naviget("/Menu");
   };
 
   return (

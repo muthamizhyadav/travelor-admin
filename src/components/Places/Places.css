@@ -1,0 +1,84 @@
+.manage-place-form {
+  max-width: 500px;
+  margin: auto;
+  margin-top: 5px;
+  height: fit-content;
+  background-color: antiquewhite;
+}
+.manage-place-form div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 80%;
+  margin: auto;
+}
+.manage-place-form p {
+  height: 45px;
+  border: 1px solid red;
+  width: 100%;
+  box-shadow: 4px 4px 3px rgb(210, 200, 200);
+  text-align: center;
+  padding-top: 15px;
+  font-size: 24px;
+}
+.manage-place-form input {
+  width: 233px;
+  height: 31px;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 10px;
+}
+
+.manage-place-form select {
+  width: 235px;
+  height: 33px;
+  border: none;
+  appearance: none;
+  border-radius: 9px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.manage-place-form option {
+  width: 200px;
+  height: 33px;
+  border: none;
+  appearance: none;
+  border-radius: 9px;
+}
+.manage-place-form select:focus-visible {
+  outline-color: aqua;
+}
+.manage-place-form .manage-place-btn {
+  margin: auto;
+  display: block;
+  width: 130px;
+  height: 35px;
+  border: none;
+  background-color: brown;
+  color: white;
+  border-radius: 4px;
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+.manage-place-options {
+  max-width: 400px;
+  margin: auto;
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-around;
+}
+.manage-place-options button {
+  width: 150px;
+  height: 35px;
+  border: none;
+  cursor: pointer;
+}
+.manage-place-btn-view {
+  background-color: green;
+  color: white;
+}
+.manage-place-btn-edit {
+  background-color: tomato;
+  color: white;
+}
