@@ -34,11 +34,53 @@
   background-color: rgb(61, 113, 225);
   color: white;
   cursor: pointer;
+  margin-right: 5px;
+}
+.view-btn-action-state {
+  width: 100px;
+  height: 25px;
+  border: none;
+  background-color: rgb(7, 212, 72);
+  color: white;
+  cursor: pointer;
+}
+
+
+.State-particular-content img {
+  max-width: 500px;
+}
+
+.State-particular-content span{
+  color: red;
+}
+.State-particular-content p{
+  color: rgb(10, 24, 151);
 }
 @media only screen and (max-width: 600px) {
   .view-state-table {
     max-width: 100%;
     margin: auto;
     margin-top: 10px;
+  }
+  .State-particular-content img {
+    max-width: 300px;
+  }
+  .Edite-btn-action-state {
+    max-width: 100px;
+    height: 25px;
+    border: none;
+    background-color: rgb(61, 113, 225);
+    color: white;
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+  .view-btn-action-state {
+    max-width: 100px;
+    height: 25px;
+    border: none;
+    background-color: rgb(7, 212, 72);
+    color: white;
+    cursor: pointer;
+    margin-right: 6px;
   }
 }

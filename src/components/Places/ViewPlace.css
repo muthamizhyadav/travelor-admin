@@ -28,9 +28,53 @@
   background-color: orange;
   color: white;
 }
-
+.places-pagination {
+  max-width: 350px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.places-btn-action-edit {
+  width: 100px;
+  height: 25px;
+  margin-right: 4px;
+  border: none;
+  color: white;
+  background-color: blue;
+  cursor: pointer;
+}
+.places-btn-action-view {
+  width: 100px;
+  height: 25px;
+  border: none;
+  color: white;
+  background-color: rgb(22, 149, 17);
+  cursor: pointer;
+}
+.places-particular-content img {
+  max-width: 400px;
+}
+.places-particular-content p{
+  /* max-width: 400px; */
+  color: green;
+}
+.places-particular-content span{
+  color: red;
+}
 @media only screen and (max-width: 600px) {
   .place-view-table {
     max-width: 100% !important;
+  }
+  .places-particular-content img {
+    max-width: 300px;
+  }
+  .places-btn-action-edit {
+    width: 100px;
+    height: 25px;
+    margin-bottom: 4px;
+    border: none;
+    color: white;
+    background-color: blue;
+    cursor: pointer;
   }
 }

@@ -10,6 +10,11 @@ import {
   TableHead,
   TableRow,
   Paper,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Button,
 } from "@material-ui/core";
 import BaseUrl from "../../env";
 
@@ -21,6 +26,10 @@ function ViewState() {
   };
 
   const [rows, setState] = React.useState([]);
+  const [particularState, setParticularState] = React.useState({});
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const FetchState = async () => {
     const value = await Axios.get(`${BaseUrl}/v1/state`);
@@ -30,6 +39,13 @@ function ViewState() {
   const EditePageRoute = (e) => {
     navigate(`/EditeState?id=${e}`);
   };
+
+  const viewClick = (index) => {
+    console.log(index);
+    let data = rows[index];
+    setParticularState(data);
+  };
+  console.log(particularState);
 
   useEffect(() => {
     FetchState();
@@ -44,12 +60,6 @@ function ViewState() {
         >
           Add State
         </button>
-        {/* <button
-          className="view-state-btn-edite"
-          onClick={() => RoutePage("EditeState")}
-        >
-          Edite State
-        </button> */}
       </div>
       <div className="view-state-table">
         <TableContainer component={Paper}>
@@ -64,13 +74,13 @@ function ViewState() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row, i) => (
+              {rows.map((row, index) => (
                 <TableRow
                   key={row.name}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {i + 1}
+                    {index + 1}
                   </TableCell>
                   <TableCell component="th" scope="row">
                     {row.name}
@@ -96,12 +106,64 @@ function ViewState() {
                     >
                       Edite
                     </button>
+                    <button
+                      className="view-btn-action-state"
+                      onClick={() => {
+                        viewClick(index);
+                        handleOpen();
+                      }}
+                    >
+                      View
+                    </button>
                   </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
+      </div>
+      <div className="particular-state-view">
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle style={{ textAlign: "center" }}>
+            {particularState.name}
+          </DialogTitle>
+          <DialogContent>
+            <div className="State-particular-content">
+              <p>
+                <span>about : </span>
+                {particularState.about}
+              </p>
+              <p>
+                <span>capital:</span>
+                {particularState.capital}
+              </p>
+              <p>
+                <span>climate : </span>
+                {particularState.climate}
+              </p>
+              <p>
+                <span>history: </span>
+                {particularState.history}
+              </p>
+              <p>
+                <span>Time To Visit: </span>
+                {particularState.time}
+              </p>
+              <p>
+                <span>No Of Image:</span>
+                {!particularState.img ? 0 : particularState.img.length}
+              </p>
+              {particularState.img != 0 && particularState.img
+                ? particularState.img.map((e) => <img src={e} alt="img" />)
+                : ""}
+            </div>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} variant="contained" color="secondary">
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </div>
   );

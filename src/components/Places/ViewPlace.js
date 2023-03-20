@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./ViewPlace.css";
 import { useNavigate } from "react-router-dom";
 import BaseUrl from "../../env";
@@ -10,25 +10,59 @@ import {
   TableHead,
   TableRow,
   Paper,
+  Switch,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Button,
 } from "@material-ui/core";
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
-];
+import Axios from "axios";
+import { Pagination } from "@mui/material";
 
 function ViewPlace() {
   const navigate = useNavigate();
+
+  const [places, setPlaces] = React.useState([]);
+  const [totalPage, SetTotalPage] = React.useState();
+  const [particular, setParticular] = React.useState({});
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  let currentpage = 0;
+  // let particular;
+  const FetPLaces = async () => {
+    const values = await Axios.get(
+      `${BaseUrl}/v1/tourist/fetch/tourist/places?page=${currentpage}`
+    );
+    setPlaces(values.data.values);
+    SetTotalPage(Math.ceil(values.data.total / 10));
+  };
+
+  const PaginationClick = (e) => {
+    FetPLaces();
+    console.log(currentpage);
+  };
+
+  useEffect(() => {
+    FetPLaces();
+  }, []);
+
   const RoutPage = (e) => {
     navigate(`/${e}`);
   };
+
+  const EditePageRoute = async (e) => {
+    navigate(`/${e}`);
+  };
+
+  const modelData = async (index) => {
+    const datas = places[index];
+    setParticular(datas);
+    console.log(particular);
+  };
+
   return (
     <div className="place-view-container">
       <div className="place-view-options">
@@ -50,31 +84,107 @@ function ViewPlace() {
           <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
             <TableHead className="table-head">
               <TableRow className="table-row">
-                <TableCell>Dessert (100g serving)</TableCell>
-                <TableCell align="right">Calories</TableCell>
-                <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                <TableCell>S.No</TableCell>
+                <TableCell align="left">PLaceName</TableCell>
+                <TableCell align="left">State</TableCell>
+                <TableCell align="left">TopFive</TableCell>
+                <TableCell align="left">PlaceCategory</TableCell>
+                <TableCell align="left">popular</TableCell>
+                <TableCell>Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
+              {places.map((places, index) => (
                 <TableRow
-                  key={row.name}
+                  key={places._id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
                   <TableCell component="th" scope="row">
-                    {row.name}
+                    {index + currentpage * 10 + 1}
                   </TableCell>
-                  <TableCell align="right">{row.calories}</TableCell>
-                  <TableCell align="right">{row.fat}</TableCell>
-                  <TableCell align="right">{row.carbs}</TableCell>
-                  <TableCell align="right">{row.protein}</TableCell>
+                  <TableCell align="left">{places.name}</TableCell>
+                  <TableCell align="left">{places.State}</TableCell>
+                  <TableCell align="left">
+                    {places.topfive ? <Switch defaultChecked /> : <Switch />}
+                  </TableCell>
+                  <TableCell align="left">
+                    {places.placeCategory ? places.placeCategory : "nill"}
+                  </TableCell>
+                  <TableCell align="left">
+                    {places.popular ? <Switch defaultChecked /> : <Switch />}
+                  </TableCell>
+                  <TableCell align="center">
+                    <button
+                      className="places-btn-action-edit"
+                      onClick={() => EditePageRoute("EditePlace")}
+                    >
+                      Edite
+                    </button>
+                    <button
+                      className="places-btn-action-view"
+                      onClick={() => {
+                        modelData(index);
+                        handleOpen();
+                      }}
+                    >
+                      View
+                    </button>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </TableContainer>
+      </div>
+      <div className="places-pagination">
+        <Pagination
+          size="medium"
+          count={totalPage}
+          color="primary"
+          onChange={(e, value) => {
+            currentpage = value - 1;
+            PaginationClick();
+          }}
+        />
+      </div>
+      <div>
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle style={{ textAlign: "center" }}>
+            {particular.name}
+          </DialogTitle>
+          <DialogContent>
+            <div className="places-particular-content">
+              <p>
+                <span>State : </span>
+                {`${particular.State}`}
+              </p>
+              <img src={particular.img} alt="image" />
+              <p>
+                <span>Info:</span>
+                {` ${particular.info}`}
+              </p>
+              <p>
+                <span>This place In Top Five : </span>
+                {particular.topfive ? "YES" : "NO"}
+              </p>
+              <p>
+                <span>Category: </span>
+                {particular.placeCategory
+                  ? particular.placeCategory
+                  : "Not Set"}
+              </p>
+              <p>
+                <span>This Place In Popular: </span>
+                {particular.popular ? particular.popular : "NO"}
+              </p>
+            </div>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} variant="contained" color="secondary">
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
       </div>
     </div>
   );
