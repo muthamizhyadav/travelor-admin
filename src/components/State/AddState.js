@@ -3,14 +3,20 @@ import "./AddState.css";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import BaseUrl from "../../env";
+import Loading from "../Loader/Loading";
+
 function AddState() {
   const navigate = useNavigate();
 
   const [Partition, setPartition] = React.useState([]);
   const [err, setErr] = React.useState("");
+  const [show, setShow] = React.useState(true);
 
   const FetchPartition = async () => {
     const values = await Axios.get(`${BaseUrl}/v1/category`);
+    if ((values.status == 200) | (values.status == 201)) {
+      setShow(false);
+    }
     setPartition(values.data);
   };
 
@@ -23,6 +29,7 @@ function AddState() {
   };
   return (
     <div className="add-state-container">
+      <Loading show={show} />
       <div className="manage-state-options">
         <button
           className="manage-state-view"

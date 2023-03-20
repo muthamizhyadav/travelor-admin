@@ -19,6 +19,7 @@ import {
 } from "@material-ui/core";
 import Axios from "axios";
 import { Pagination } from "@mui/material";
+import Loading from "../Loader/Loading";
 
 function ViewPlace() {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ function ViewPlace() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [show, setShow] = React.useState(true);
 
   let currentpage = 0;
   // let particular;
@@ -36,6 +38,9 @@ function ViewPlace() {
     const values = await Axios.get(
       `${BaseUrl}/v1/tourist/fetch/tourist/places?page=${currentpage}`
     );
+    if ((values.status == 201) | (values.status == 200)) {
+      setShow(false);
+    }
     setPlaces(values.data.values);
     SetTotalPage(Math.ceil(values.data.total / 10));
   };
@@ -65,6 +70,7 @@ function ViewPlace() {
 
   return (
     <div className="place-view-container">
+      <Loading show={show} />
       <div className="place-view-options">
         <button
           className="place-view-btn-add"

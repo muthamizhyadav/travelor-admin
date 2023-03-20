@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import "./ViewState.css";
 import { useNavigate } from "react-router-dom";
+import Loading from "../Loader/Loading";
 import Axios from "axios";
 import {
   Table,
@@ -30,9 +31,13 @@ function ViewState() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [show, setShow] = React.useState(true);
 
   const FetchState = async () => {
     const value = await Axios.get(`${BaseUrl}/v1/state`);
+    if ((value.status == 201) | (value.status == 200)) {
+      setShow(false);
+    }
     setState(value.data);
   };
 
@@ -53,6 +58,7 @@ function ViewState() {
 
   return (
     <div className="view-state-container">
+      <Loading show={show} />
       <div className="view-state-options">
         <button
           className="view-state-btn-add"

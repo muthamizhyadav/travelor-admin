@@ -3,14 +3,17 @@ import "./Places.css";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 import BaseUrl from "../../env";
-
+import Loading from "../Loader/Loading";
 function Places() {
   const navigate = useNavigate();
 
   const [state, setState] = React.useState([]);
-
+  const [show, setShow] = React.useState(true);
   const FetchStatePlace = async () => {
     const values = await Axios.get(`${BaseUrl}/v1/state`);
+    if ((values.status == 200) | (values.status == 201)) {
+      setShow(false);
+    }
     setState(values.data);
   };
 
@@ -22,6 +25,7 @@ function Places() {
   };
   return (
     <div className="manage-place-container">
+      <Loading show={show} />
       <div className="manage-place-options">
         <button
           className="manage-place-btn-view"
