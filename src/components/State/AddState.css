@@ -83,9 +83,16 @@
   color: white;
 }
 .manage-state-edite {
-    background-color: tomato;
-    color: white;
-  }
+  background-color: tomato;
+  color: white;
+}
+
+.add-state-forms .manage-state-error {
+  display: block;
+  color: red;
+  text-align: center;
+  margin-bottom: 10px;
+}
 
 @media only screen and (max-width: 600px) {
   .add-state-forms div {

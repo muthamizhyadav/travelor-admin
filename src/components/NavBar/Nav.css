@@ -10,3 +10,8 @@
   font-size: 20px;
   font-weight: 700;
 }
+
+.nav-container .nav-bar-Admin:hover{
+  color: rgba(9, 224, 70, 0.963);
+  cursor: pointer;
+}

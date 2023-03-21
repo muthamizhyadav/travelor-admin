@@ -167,7 +167,7 @@ function ViewPlace() {
               <img src={particular.img} alt="image" />
               <p>
                 <span>Info:</span>
-                {` ${particular.info}`}
+                {particular.info}
               </p>
               <p>
                 <span>This place In Top Five : </span>

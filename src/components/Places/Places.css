@@ -82,3 +82,9 @@
   background-color: tomato;
   color: white;
 }
+.manage-place-container .manage-place-err {
+  color: red;
+  text-align: center;
+  display: block;
+  margin-bottom: 12px;
+}

@@ -1,12 +1,12 @@
 import React from "react";
-import { ScaleLoader } from "react-spinners";
+import { ScaleLoader, PacmanLoader } from "react-spinners";
 import "./Loading.css";
 function Loading({ show }) {
   return (
     show && (
       <div className="loader">
         <div className="loader-child">
-          <ScaleLoader color="blue" />
+          <PacmanLoader color="#36d7b7" />
         </div>
       </div>
     )
