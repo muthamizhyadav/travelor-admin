@@ -1,44 +1,73 @@
 .edit-state-form {
-    max-width: 500px;
-    height: fit-content;
-    margin: auto;
-    margin-top: 25px;
-    background-color: aqua;
-  }
-  
-  .edit-state-form div {
-    display: flex;
-    width: 95%;
-    justify-content: space-between;
-  }
-  .edit-state-form input {
-    width: 250px;
-    height: 30px;
-    border: none;
-    border-radius: 4px;
-    margin-bottom: 10px;
-  }
-  .edit-state-form select {
-    width: 254px;
-    border: none;
-    height: 30px;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    appearance: none;
-    cursor: pointer;
-  }
-  .edit-state-form .edite-state-image{
-      display: block;
-      margin: auto;
-      position: relative;
-  }
-  .edit-state-form .edite-state-image img{
-      width: 100%;
-      margin: auto;
-      height: 150px;
-      position: relative;
-  }
-  .edit-state-form .edite-state-image button{
-      position: absolute;
-      left: 430px;
-  }
+  max-width: 500px;
+  height: fit-content;
+  margin: auto;
+  margin-top: 25px;
+  background-color: rgb(221, 226, 236);
+}
+
+.edit-state-form div {
+  display: flex;
+  width: 95%;
+  justify-content: space-between;
+}
+.edit-state-form input {
+  width: 250px;
+  height: 30px;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.edit-state-form select {
+  width: 254px;
+  border: none;
+  height: 30px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  appearance: none;
+  cursor: pointer;
+}
+.edit-state-form .edite-state-image {
+  display: block;
+  margin: auto;
+  position: relative;
+}
+.edit-state-form .edite-state-image img {
+  width: 100%;
+  margin: auto;
+  height: 150px;
+  position: relative;
+  margin-top: 20px;
+}
+.edit-state-form .edite-state-image button {
+  position: absolute;
+  left: 90%;
+  border: none;
+  background-color: rgb(84, 225, 41);
+  margin-top: 25px;
+  padding-top: 3px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.edite-del-btn button {
+  width: 160px;
+  height: 40px;
+  margin: auto;
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: brown;
+  color: white;
+}
+.edite-del-btn button:hover {
+  background-color: red;
+}
+.edit-state-form h1 {
+  background-color: antiquewhite;
+  text-align: center;
+  box-shadow: 4px 4px 4px 4px gray;
+}
