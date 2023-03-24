@@ -1,0 +1,44 @@
+.edit-state-form {
+    max-width: 500px;
+    height: fit-content;
+    margin: auto;
+    margin-top: 25px;
+    background-color: aqua;
+  }
+  
+  .edit-state-form div {
+    display: flex;
+    width: 95%;
+    justify-content: space-between;
+  }
+  .edit-state-form input {
+    width: 250px;
+    height: 30px;
+    border: none;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .edit-state-form select {
+    width: 254px;
+    border: none;
+    height: 30px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    appearance: none;
+    cursor: pointer;
+  }
+  .edit-state-form .edite-state-image{
+      display: block;
+      margin: auto;
+      position: relative;
+  }
+  .edit-state-form .edite-state-image img{
+      width: 100%;
+      margin: auto;
+      height: 150px;
+      position: relative;
+  }
+  .edit-state-form .edite-state-image button{
+      position: absolute;
+      left: 430px;
+  }
