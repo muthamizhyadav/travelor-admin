@@ -58,8 +58,8 @@ function ViewPlace() {
     navigate(`/${e}`);
   };
 
-  const EditePageRoute = async (e) => {
-    navigate(`/${e}`);
+  const EditePageRoute = async (e, id) => {
+    navigate(`/${e}?id=${id}`);
   };
 
   const modelData = async (index) => {
@@ -122,7 +122,7 @@ function ViewPlace() {
                   <TableCell align="center">
                     <button
                       className="places-btn-action-edit"
-                      onClick={() => EditePageRoute("EditePlace")}
+                      onClick={() => EditePageRoute("EditePlace", places._id)}
                     >
                       Edite
                     </button>
