@@ -34,7 +34,7 @@ function EditeState() {
     if (values.status === 200 || values.status == 201) {
       FetchStateById();
       setShow(false);
-      FetchStateById();
+      
     }
   };
 
@@ -73,6 +73,7 @@ function EditeState() {
     setShow(true);
     let values = await Axios.put(`${BaseUrl}/v1/state/${id}`, updateData);
     if (values.status == 200 || values.status == 201) {
+      FetchStateById();
       setShow(false);
     }
   };
