@@ -149,7 +149,7 @@ function EditeState() {
           <input
             type="text"
             defaultValue={stateData.history}
-            name="hitory"
+            name="history"
             onChange={(e) => {
               changeFun(e);
             }}
