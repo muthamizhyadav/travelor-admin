@@ -34,7 +34,6 @@ function EditeState() {
     if (values.status === 200 || values.status == 201) {
       FetchStateById();
       setShow(false);
-      
     }
   };
 
@@ -59,13 +58,15 @@ function EditeState() {
 
   const ImageClick = async () => {
     setShow(true);
-    let values = await Axios.put(`${BaseUrl}/v1/state/uploadImage/${id}`, {
-      image: imgState,
-    });
-    if (values.status == 200 || values.status == 201) {
-      setShow(false);
-      setImgState("")
-      FetchStateById();
+    if (imgState != "") {
+      let values = await Axios.put(`${BaseUrl}/v1/state/uploadImage/${id}`, {
+        image: imgState,
+      });
+      if (values.status == 200 || values.status == 201) {
+        setShow(false);
+        setImgState("");
+        FetchStateById();
+      }
     }
   };
 
