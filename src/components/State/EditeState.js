@@ -10,6 +10,7 @@ function EditeState() {
   let id = searchParams.get("id");
   const [stateData, setStateData] = React.useState({});
   const [show, setShow] = React.useState(true);
+  const [updateData, setUpdateData] = React.useState({});
 
   // fetch State ById
 
@@ -19,15 +20,57 @@ function EditeState() {
     if ((data.status != 200) | (data.status != 201)) {
       setShow(false);
     }
-    console.log(stateData);
   };
 
   useEffect(() => {
     FetchStateById();
   }, []);
 
-  const imageDel = async (e) => {
-    console.log(e);
+  const imageDel = async (e, _id) => {
+    setShow(true);
+    let values = await Axios.put(`${BaseUrl}/v1/state/delete/image/${_id}`, {
+      image: e,
+    });
+    if (values.status === 200 || values.status == 201) {
+      FetchStateById();
+      setShow(false);
+    }
+  };
+
+  // change Function
+
+  const changeFun = (e) => {
+    if (e.target.name === "img") {
+      setUpdateData({ ...updateData });
+    } else {
+      setUpdateData({ ...updateData, [e.target.name]: e.target.value });
+    }
+  };
+
+  // image Change
+  let imageUrl;
+  const imageChange = async (e) => {
+    imageUrl = e.target.value;
+  };
+
+  // click FUnction
+
+  const ImageClick = async () => {
+    setShow(true);
+    let values = await Axios.put(`${BaseUrl}/v1/state/uploadImage/${id}`, {
+      image: imageUrl,
+    });
+    if (values.status == 200 || values.status == 201) {
+      setShow(false);
+    }
+  };
+
+  const clickFun = async () => {
+    setShow(true);
+    let values = await Axios.put(`${BaseUrl}/v1/state/${id}`, updateData);
+    if (values.status == 200 || values.status == 201) {
+      setShow(false);
+    }
   };
 
   return (
@@ -40,54 +83,121 @@ function EditeState() {
 
         <div>
           <label>State Name: </label>
-          <input type="text" defaultValue={stateData.name} />
+          <input
+            type="text"
+            defaultValue={stateData.name}
+            name="name"
+            onChange={(e) => {
+              changeFun(e);
+            }}
+          />
         </div>
         <div>
           <label>Capital: </label>
-          <input type="text" defaultValue={stateData.capital} />
+          <input
+            type="text"
+            defaultValue={stateData.capital}
+            name="capital"
+            onChange={(e) => {
+              changeFun(e);
+            }}
+          />
         </div>
         <div>
           <label>Image: </label>
-          <input type="text" placeholder="Pase New Url" />
+          <input
+            type="text"
+            placeholder="Pase New Url"
+            name="img"
+            onChange={(e) => {
+              imageChange(e);
+            }}
+          />
+        </div>
+        <div className="imge-upload-btn">
+          <button onClick={ImageClick}>upload Image</button>
         </div>
         <div>
           <label>About: </label>
-          <input type="text" defaultValue={stateData.about} />
+          <input
+            type="text"
+            defaultValue={stateData.about}
+            name="about"
+            onChange={(e) => {
+              changeFun(e);
+            }}
+          />
         </div>
         <div>
           <label>Time: </label>
-          <input type="text" defaultValue={stateData.time} />
+          <input
+            type="text"
+            defaultValue={stateData.time}
+            name="time"
+            onChange={(e) => {
+              changeFun(e);
+            }}
+          />
         </div>
         <div>
           <label>History: </label>
-          <input type="text" defaultValue={stateData.history} />
+          <input
+            type="text"
+            defaultValue={stateData.history}
+            name="hitory"
+            onChange={(e) => {
+              changeFun(e);
+            }}
+          />
         </div>
         <div>
           <label>Food: </label>
-          <input type="text" defaultValue={stateData.food} />
+          <input
+            type="text"
+            defaultValue={stateData.food}
+            name="food"
+            onChange={(e) => changeFun(e)}
+          />
         </div>
         <div>
           <label>Climate: </label>
-          <input type="text" defaultValue={stateData.climate} />
-        </div>
-        <div>
-          <label>Time: </label>
-          <input type="text" defaultValue={stateData.time} />
+          <input
+            type="text"
+            defaultValue={stateData.climate}
+            name="climate"
+            onChange={(e) => {
+              changeFun(e);
+            }}
+          />
         </div>
         <div>
           <label>Latitude: </label>
-          <input type="text" defaultValue={stateData.lat} />
+          <input
+            type="text"
+            defaultValue={stateData.lat}
+            name="lat"
+            onChange={(e) => {
+              changeFun(e);
+            }}
+          />
         </div>
         <div>
           <label>Longitude: </label>
-          <input type="text" defaultValue={stateData.long} />
+          <input
+            type="text"
+            defaultValue={stateData.long}
+            name="long"
+            onChange={(e) => {
+              changeFun(e);
+            }}
+          />
         </div>
         <div className="edite-state-image">
           {stateData.img
             ? stateData.img.map((e) => (
                 <>
                   <img src={e} alt="image" />
-                  <button onClick={() => imageDel(e)}>
+                  <button onClick={() => imageDel(e, stateData._id)}>
                     <svg
                       width="18"
                       height="16"
@@ -109,7 +219,7 @@ function EditeState() {
             : ""}
         </div>
         <div className="edite-del-btn">
-          <button>Save & Continue</button>
+          <button onClick={clickFun}>Save & Continue</button>
         </div>
       </div>
     </div>

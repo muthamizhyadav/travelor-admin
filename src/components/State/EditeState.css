@@ -71,3 +71,15 @@
   text-align: center;
   box-shadow: 4px 4px 4px 4px gray;
 }
+
+.imge-upload-btn button{
+  margin: auto;
+  margin-bottom: 10px;
+  border: none;
+  width: 120px;
+  height: 30px;
+  background-color: rgb(94, 10, 139);
+  cursor: pointer;
+  color: white;
+  border-radius: 4px;
+}
