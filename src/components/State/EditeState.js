@@ -34,6 +34,7 @@ function EditeState() {
     if (values.status === 200 || values.status == 201) {
       FetchStateById();
       setShow(false);
+      FetchStateById();
     }
   };
 
@@ -49,8 +50,9 @@ function EditeState() {
 
   // image Change
   let imageUrl;
+  const [imgState, setImgState] = React.useState("");
   const imageChange = async (e) => {
-    imageUrl = e.target.value;
+    setImgState(e.target.value);
   };
 
   // click FUnction
@@ -58,10 +60,12 @@ function EditeState() {
   const ImageClick = async () => {
     setShow(true);
     let values = await Axios.put(`${BaseUrl}/v1/state/uploadImage/${id}`, {
-      image: imageUrl,
+      image: imgState,
     });
     if (values.status == 200 || values.status == 201) {
       setShow(false);
+      setImgState("")
+      FetchStateById();
     }
   };
 
@@ -109,6 +113,7 @@ function EditeState() {
             type="text"
             placeholder="Pase New Url"
             name="img"
+            value={imgState}
             onChange={(e) => {
               imageChange(e);
             }}
