@@ -12,11 +12,16 @@ function Places() {
   const [postData, setpostData] = React.useState({
     name: "",
     stateId: "",
-    img: "",
+    img: [],
     placeCategory: "",
     lat: "",
     long: "",
     info: "",
+    time: "",
+    language: "",
+    Rating: "",
+    history: "",
+    specialFood: "",
   });
   const [err, setErr] = React.useState("");
   const FetchStatePlace = async () => {
@@ -36,18 +41,24 @@ function Places() {
   };
 
   const PlaceDataCollect = (e) => {
-    const data = { ...postData, [e.target.name]: e.target.value };
-    setpostData(data);
+    let image = [];
+    if (e.target.name == "img") {
+      image.push(e.target.value);
+      setpostData({ ...postData, img: image });
+    } else {
+      const data = { ...postData, [e.target.name]: e.target.value };
+      setpostData(data);
+    }
   };
 
   // Submit Places Flow
 
   const SubmitPlace = async () => {
     const { name, stateId, img, info, lat, long, placeCategory } = postData;
+    console.log(postData);
     if (
       name != "" &&
       stateId != "" &&
-      img != "" &&
       info != "" &&
       lat != "" &&
       long != "" &&
@@ -60,7 +71,6 @@ function Places() {
         let placesEmpty = {
           name: "",
           stateId: "",
-          img: "",
           placeCategory: "",
           lat: "",
           long: "",
@@ -69,7 +79,6 @@ function Places() {
         setpostData(placesEmpty);
       }
     } else {
-      
       setErr("All Fields Required");
     }
   };
@@ -165,6 +174,46 @@ function Places() {
             name="long"
             onChange={(e) => PlaceDataCollect(e)}
             value={postData.long}
+          />
+        </div>
+        <div>
+          <label>Time:</label>{" "}
+          <input
+            type="text"
+            placeholder="Time To VIsit"
+            name="time"
+            onChange={(e) => PlaceDataCollect(e)}
+            value={postData.time}
+          />
+        </div>
+        <div>
+          <label>Language:</label>{" "}
+          <input
+            type="text"
+            placeholder="Primary Language"
+            name="language"
+            onChange={(e) => PlaceDataCollect(e)}
+            value={postData.language}
+          />
+        </div>
+        <div>
+          <label>history:</label>{" "}
+          <input
+            type="text"
+            placeholder="History"
+            name="history"
+            onChange={(e) => PlaceDataCollect(e)}
+            value={postData.history}
+          />
+        </div>
+        <div>
+          <label>specialFood:</label>{" "}
+          <input
+            type="text"
+            placeholder="specialFood"
+            name="specialFood"
+            onChange={(e) => PlaceDataCollect(e)}
+            value={postData.specialFood}
           />
         </div>
         {err != "" ? <span className="manage-place-err">{err}</span> : ""}
