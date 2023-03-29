@@ -11,6 +11,7 @@ function EditePlace() {
   const [SinglePlace, setSinglePlace] = React.useState({});
   const [show, setShow] = React.useState(false);
   const [image, setImage] = React.useState("");
+  const [editePlace, setEditPlace] = React.useState({});
   // fetch Single Place
 
   const GetSinglePlace = async () => {
@@ -55,6 +56,21 @@ function EditePlace() {
     }
   };
 
+  const EditChange = (e) => {
+    if (e.target.name != "img") {
+      setEditPlace({ ...editePlace, [e.target.name]: e.target.value });
+    }
+  };
+
+  const submitEdit = async () => {
+    setShow(true);
+    let value = await Axios.put(`${BaseUrl}/v1/tourist/${id}`, editePlace);
+    if (value.status == 200 || value.status == 201) {
+      setShow(false);
+      GetSinglePlace();
+    }
+  };
+
   useEffect(() => {
     GetSinglePlace();
   }, []);
@@ -66,7 +82,14 @@ function EditePlace() {
         <h1>Edite Place</h1>
         <div>
           <label>PLace Name: </label>
-          <input type="text" defaultValue={SinglePlace.name} />
+          <input
+            type="text"
+            defaultValue={SinglePlace.name}
+            name="name"
+            onChange={(e) => {
+              EditChange(e);
+            }}
+          />
         </div>
         <div>
           <label>State Name: </label>
@@ -76,28 +99,70 @@ function EditePlace() {
         </div>
         <div>
           <label>info: </label>
-          <input type="text" defaultValue={SinglePlace.info} />
+          <input
+            type="text"
+            defaultValue={SinglePlace.info}
+            name="info"
+            onChange={(e) => {
+              EditChange(e);
+            }}
+          />
         </div>
 
         <div>
           <label>Time: </label>
-          <input type="text" defaultValue={SinglePlace.time} />
+          <input
+            type="text"
+            defaultValue={SinglePlace.time}
+            name="time"
+            onChange={(e) => {
+              EditChange(e);
+            }}
+          />
         </div>
         <div>
           <label>History: </label>
-          <input type="text" defaultValue={SinglePlace.history} />
+          <input
+            type="text"
+            defaultValue={SinglePlace.history}
+            name="history"
+            onChange={(e) => {
+              EditChange(e);
+            }}
+          />
         </div>
         <div>
           <label>specialFood: </label>
-          <input type="text" defaultValue={SinglePlace.specialFood} />
+          <input
+            type="text"
+            defaultValue={SinglePlace.specialFood}
+            name="specialFood"
+            onChange={(e) => {
+              EditChange(e);
+            }}
+          />
         </div>
         <div>
           <label>Latitude: </label>
-          <input type="text" defaultValue={SinglePlace.lat} />
+          <input
+            type="text"
+            defaultValue={SinglePlace.lat}
+            name="lat"
+            onChange={(e) => {
+              EditChange(e);
+            }}
+          />
         </div>
         <div>
           <label>Longitude: </label>
-          <input type="text" defaultValue={SinglePlace.long} />
+          <input
+            type="text"
+            defaultValue={SinglePlace.long}
+            name="long"
+            onChange={(e) => {
+              EditChange(e);
+            }}
+          />
         </div>
         <div>
           <label>URL: </label>
@@ -140,7 +205,7 @@ function EditePlace() {
             : ""}
         </div>
         <div className="edite-place-submit">
-          <button>Save & Continue</button>
+          <button onClick={submitEdit}>Save & Continue</button>
         </div>
       </div>
     </div>
