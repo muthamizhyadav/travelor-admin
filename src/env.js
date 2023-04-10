@@ -1,3 +1,3 @@
-const BaseUrl = "https://travellor-app.onrender.com";
+const BaseUrl = "https://ordinary-piquant-whale.glitch.me";
 
 export default BaseUrl;
