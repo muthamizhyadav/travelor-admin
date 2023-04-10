@@ -45,8 +45,16 @@ function ViewPlace() {
     SetTotalPage(Math.ceil(values.data.total / 10));
   };
 
-  const PaginationClick = (e) => {
-    FetPLaces();
+  const PaginationClick = async (e) => {
+    setShow(true)
+    const values = await Axios.get(
+      `${BaseUrl}/v1/tourist/fetch/tourist/places?page=${currentpage}`
+    );
+    if ((values.status == 201) | (values.status == 200)) {
+      setShow(false);
+    }
+    setPlaces(values.data.values);
+    SetTotalPage(Math.ceil(values.data.total / 10));
     console.log(currentpage);
   };
 
