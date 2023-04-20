@@ -1,3 +1,3 @@
-const BaseUrl = "https://witty-shorthaired-star.glitch.me/";
+const BaseUrl = "https://tourist-nshf.onrender.com/";
 
 export default BaseUrl;
