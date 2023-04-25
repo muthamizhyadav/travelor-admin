@@ -105,6 +105,34 @@ function EditePlace() {
             <option value="temples">Temple's</option>
             <option value="adventure">Adventure</option>
             <option value="beach">Beach</option>
+            <option value="turist">Turist</option>
+            <option value="museum">Museum</option>
+            <option value="couples">Couples</option>
+            <option value="architectural buildings">
+              Architectural Buildings
+            </option>
+            <option value="masoleum">Mausoleum</option>
+            <option value="cultural and Historical">
+              Cultural and Historical
+            </option>
+            <option value="caves">Caves</option>
+            <option value="pilgrimage sites">Pilgrimage sites</option>
+            <option value="lake">Lake</option>
+            <option value="falls">Falls</option>
+            <option value="natural">Natural</option>
+            <option value="church">Church</option>
+            <option value="fort">Fort</option>
+            <option value="valley">Valley</option>
+            <option value="monumental sandstone arch">
+              Monumental Sandstone Arch
+            </option>
+            <option value="major tourist destination">
+              Major Tourist Destination
+            </option>
+            <option value="park">Park</option>
+            <option value="evergreen forest">Evergreen forest</option>
+            <option value="large monastery">Large monastery</option>
+            <option value="mangrove forest">Mangrove Forest</option>
             <option value="other">Other</option>
           </select>
         </div>
