@@ -141,7 +141,7 @@ function Places() {
             <option value="">Select Category</option>
             <option value="hills">Hills</option>
             <option value="temples">Temple's</option>
-            <option value="hills">Adventure</option>
+            <option value="adventure">Adventure</option>
             <option value="beach">Beach</option>
             <option value="other">Other</option>
           </select>

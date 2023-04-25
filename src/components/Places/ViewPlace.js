@@ -46,7 +46,7 @@ function ViewPlace() {
   };
 
   const PaginationClick = async (e) => {
-    setShow(true)
+    setShow(true);
     const values = await Axios.get(
       `${BaseUrl}/v1/tourist/fetch/tourist/places?page=${currentpage}`
     );
@@ -76,6 +76,19 @@ function ViewPlace() {
     console.log(particular);
   };
 
+  const searchByName = async (e) => {
+    let name = e.target.value;
+    setShow(true);
+    const values = await Axios.get(
+      `${BaseUrl}/v1/tourist/fetch/tourist/places?page=${currentpage}&name=${name}`
+    );
+    if ((values.status == 201) | (values.status == 200)) {
+      setShow(false);
+    }
+    setPlaces(values.data.values);
+    SetTotalPage(Math.ceil(values.data.total / 10));
+  };
+
   return (
     <div className="place-view-container">
       <Loading show={show} />
@@ -86,12 +99,14 @@ function ViewPlace() {
         >
           Add Place
         </button>
-        {/* <button
-          className="place-view-btn-edite"
-          onClick={() => RoutPage("EditePlace")}
-        >
-          Edite Place
-        </button> */}
+      </div>
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search by Place Name"
+          className="searchinput"
+          onKeyUp={(e) => searchByName(e)}
+        />
       </div>
       <div className="place-view-table">
         <TableContainer component={Paper}>

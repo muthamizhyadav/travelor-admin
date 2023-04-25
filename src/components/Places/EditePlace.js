@@ -98,6 +98,17 @@ function EditePlace() {
           </select>
         </div>
         <div>
+          <label>Category: </label>
+          <select name="placeCategory">
+            <option>{SinglePlace.category}</option>
+            <option value="hills">Hills</option>
+            <option value="temples">Temple's</option>
+            <option value="adventure">Adventure</option>
+            <option value="beach">Beach</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div>
           <label>info: </label>
           <input
             type="text"

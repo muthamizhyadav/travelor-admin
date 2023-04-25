@@ -54,12 +54,23 @@
 .places-particular-content img {
   max-width: 400px;
 }
-.places-particular-content p{
+.places-particular-content p {
   max-width: 400px;
   color: green;
 }
-.places-particular-content span{
+.places-particular-content span {
   color: red;
+}
+.search-bar {
+  justify-content: center;
+  display: flex;
+  margin-top: 13px;
+}
+.searchinput {
+  width: 211px;
+  height: 34px;
+  border-radius: 24px;
+  text-align: center;
 }
 @media only screen and (max-width: 600px) {
   .place-view-table {
