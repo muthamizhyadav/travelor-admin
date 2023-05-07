@@ -21,7 +21,6 @@ function EditePlace() {
       setSinglePlace({ ...values.data });
       setShow(false);
     }
-    console.log(SinglePlace);
   };
 
   // uploadImage
@@ -99,7 +98,7 @@ function EditePlace() {
         </div>
         <div>
           <label>Category: </label>
-          <select name="placeCategory">
+          <select name="placeCategory" onChange={(e) => EditChange(e)}>
             <option>{SinglePlace.category}</option>
             <option value="hills">Hills</option>
             <option value="temples">Temple's</option>

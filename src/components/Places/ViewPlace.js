@@ -82,11 +82,35 @@ function ViewPlace() {
     const values = await Axios.get(
       `${BaseUrl}/v1/tourist/fetch/tourist/places?page=${currentpage}&name=${name}`
     );
-    if ((values.status == 201) | (values.status == 200)) {
+    if ((values.status === 201) | (values.status === 200)) {
       setShow(false);
     }
     setPlaces(values.data.values);
     SetTotalPage(Math.ceil(values.data.total / 10));
+  };
+
+  const topFiveEnableDisable = async (e) => {
+    const values = await Axios.get(`${BaseUrl}/v1/tourist/${e._id}`);
+    let active;
+    if (values.data.topfive === false) {
+      active = true;
+    } else {
+      active = false;
+    }
+    setShow(true);
+    if (values.status === 200) {
+      await Axios.put(`${BaseUrl}/v1/tourist/UpdateTopFive/Places/${e._id}`, {
+        topfive: active,
+      })
+        .then((data) => {
+          FetPLaces();
+          setShow(false);
+        })
+
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (
@@ -134,7 +158,14 @@ function ViewPlace() {
                   <TableCell align="left">{places.name}</TableCell>
                   <TableCell align="left">{places.State}</TableCell>
                   <TableCell align="left">
-                    {places.topfive ? <Switch defaultChecked /> : <Switch />}
+                    {places.topfive ? (
+                      <Switch
+                        defaultChecked
+                        onClick={(e) => topFiveEnableDisable(places)}
+                      />
+                    ) : (
+                      <Switch onClick={(e) => topFiveEnableDisable(places)} />
+                    )}
                   </TableCell>
                   <TableCell align="left">
                     {places.placeCategory ? places.placeCategory : "nill"}
