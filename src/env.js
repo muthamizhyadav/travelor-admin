@@ -1,3 +1,3 @@
-const BaseUrl = "https://tourist-nshf.onrender.com";
+const BaseUrl = "https://innovaturebackend.click";
 
 export default BaseUrl;
